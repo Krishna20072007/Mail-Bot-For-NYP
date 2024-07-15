@@ -81,7 +81,7 @@ def send_email(subject, html_content, images, links, to_email):
         context.quit()
 
 if __name__ == "__main__":
-    msg_file_path = 'c:\Users\kamal\Desktop\Mail-Bot\1.msg'  # Path to your .msg file
+    msg_file_path = 'c:\Users\kamal\Desktop\Mail-Bot\test.msg'  # Path to your .msg file
     recipient_email = 'krishnakashab@gmail.com'  # Recipient's email address
     
     # Read .msg file and extract subject, HTML content, images, and links
