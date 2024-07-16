@@ -33,9 +33,9 @@ def send_email(subject, html_content, images, to_email):
     sender_name = 'Nurture Your Pet'  # Update with your sender's name
     smtp_server = 'smtp.gmail.com'  # Update with your SMTP server
     smtp_port = 587  # Update with your SMTP port (if necessary)
+    reply_to = 'contact@nurtureyourpet.com'  # Update with your reply-to address
     sender_email = 'nurtureyourpet@gmail.com'  # Update with your email address
     sender_password = 'kooi qvni mxmb lbub'  # Update with your email password
-    reply_to = 'contact@nurtureyourpet.com'  # Update with your reply-to address
     
     # Create a multipart message and set headers
     message = MIMEMultipart()
