@@ -34,8 +34,8 @@ def send_email(subject, html_content, images, to_email):
     smtp_server = "smtp.gmail.com"
     smtp_port = 587
     reply_to = "contact@nurtureyourpet.com"
-    sender_email = "nurtureyourpet@gmail.com" # change sender email here
-    sender_password = "kooi qvni mxmb lbub" # change app password here
+    sender_email = "nurtureyourpet@gmail.com"  # change sender email here
+    sender_password = "kooi qvni mxmb lbub"  # change app password here
 
     message = MIMEMultipart()
     message["From"] = f"{sender_name} <{sender_email}>"
@@ -69,8 +69,8 @@ def send_email(subject, html_content, images, to_email):
 
 
 def main():
-    url = "https://us4.campaign-archive.com/?e=__test_email__&u=ab8c81ebfd5310096b6de2a2a&id=bc0bb065a1" # add body url here
-    excel_file = "emails.xlsx" # add path to emails excel
+    url = "https://us4.campaign-archive.com/?e=__test_email__&u=ab8c81ebfd5310096b6de2a2a&id=bc0bb065a1"  # add body url here
+    excel_file = "emails.xlsx"  # add path to emails excel
 
     try:
 

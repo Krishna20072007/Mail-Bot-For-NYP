@@ -84,7 +84,9 @@ def main():
                 images = []
                 subject = "Testing from bot - 16/07/2024"
 
-                send_email(subject, html_content, images, email, sender_email, sender_password)
+                send_email(
+                    subject, html_content, images, email, sender_email, sender_password
+                )
 
     except Exception as e:
         print(f"Error processing Excel file: {e}")
