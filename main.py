@@ -2,39 +2,33 @@ import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from email.mime.image import MIMEImage
-import os
-import win32com.client as win32
+import requests
+from bs4 import BeautifulSoup
 
-# Function to read .msg file and extract subject, HTML content, images, and links
-def read_msg_file(file_path):
-    outlook = win32.Dispatch("Outlook.Application").GetNamespace("MAPI")
-    msg = outlook.OpenSharedItem(file_path)
-    
-    subject = msg.Subject
-    
-    html_content = None
-    images = []
-    links = []
-    
-    # Extract HTML body content
-    html_body = msg.HTMLBody
-    if html_body:
-        html_content = html_body
-    
-    # Extract images and links
-    for attachment in msg.Attachments:
-        if attachment.Type == 1:  # Type 1 corresponds to embedded images
-            img_name = attachment.FileName
-            img_data = attachment.Content
-            images.append((img_name, img_data))
-        elif attachment.Type == 5:  # Type 5 corresponds to attached files (including links)
-            link_name = attachment.FileName
-            links.append(link_name)
-    
-    return subject, html_content, images, links
+# Function to fetch and clean HTML content from URL
+def fetch_and_clean_html_content(url):
+    try:
+        response = requests.get(url)
+        if response.status_code == 200:
+            soup = BeautifulSoup(response.content, 'html.parser')
+            
+            # Remove unwanted div with id="awesomewrap"
+            unwanted_div = soup.find('div', id='awesomewrap')
+            if unwanted_div:
+                unwanted_div.decompose()
+            
+            # Get cleaned HTML content
+            cleaned_html = str(soup)
+            return cleaned_html
+        else:
+            print(f"Error fetching content from URL. Status code: {response.status_code}")
+            return None
+    except Exception as e:
+        print(f"Error fetching content from URL: {e}")
+        return None
 
-# Function to send email with embedded images and links
-def send_email(subject, html_content, images, links, to_email):
+# Function to send email with embedded images
+def send_email(subject, html_content, images, to_email):
     smtp_server = 'smtp.gmail.com'  # Update with your SMTP server
     smtp_port = 587  # Update with your SMTP port (if necessary)
     sender_email = 'kamalmahek1610@gmail.com'  # Update with your email address
@@ -56,12 +50,6 @@ def send_email(subject, html_content, images, links, to_email):
         img.add_header('Content-Disposition', 'inline', filename=img_name)
         message.attach(img)
     
-    # Add links as plain text in the email body
-    if links:
-        html_content += "<p>Links:</p>"
-        for link in links:
-            html_content += f"<p>{link}</p>"
-    
     try:
         # Create a secure SSL context
         context = smtplib.SMTP(smtp_server, smtp_port)
@@ -81,11 +69,16 @@ def send_email(subject, html_content, images, links, to_email):
         context.quit()
 
 if __name__ == "__main__":
-    msg_file_path = 'c:\Users\kamal\Desktop\Mail-Bot\test.msg'  # Path to your .msg file
+    url = 'https://us4.campaign-archive.com/?e=__test_email__&u=ab8c81ebfd5310096b6de2a2a&id=bc0bb065a1'
     recipient_email = 'krishnakashab@gmail.com'  # Recipient's email address
     
-    # Read .msg file and extract subject, HTML content, images, and links
-    subject, html_content, images, links = read_msg_file(msg_file_path)
+    # Fetch and clean HTML content from URL
+    html_content = fetch_and_clean_html_content(url)
     
-    # Send email with embedded images and links
-    send_email(subject, html_content, images, links, recipient_email)
+    if html_content:
+        # Placeholder values for images (since links are removed)
+        images = []
+        subject = "Your Subject"  # Replace with appropriate subject
+        
+        # Send email with fetched and cleaned HTML content and images
+        send_email(subject, html_content, images, recipient_email)
