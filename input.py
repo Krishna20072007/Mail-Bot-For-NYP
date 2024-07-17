@@ -68,7 +68,7 @@ def send_email(subject, html_content, images, to_email, sender_email, sender_pas
 def main():
     # url and path to excel file containing email ids needs to be changed everytime
     url = "https://us22.campaign-archive.com/?e=__test_email__&u=3ea6479ffa9fd8f9d056f5bd1&id=80159c0d47"
-    excel_file = "NYP test emails - 17 JULY 2024.xlsx"
+    excel_file = "NYP IDs - 17 July 2024.xlsx"
 
     sender_email = input("Enter sender's email: ")
     sender_password = input("Enter app password: ")
@@ -84,7 +84,7 @@ def main():
 
             if html_content:
                 images = []
-                subject = "Test from bot - Honoring Your Pet's Final Moments: A Compassionate Guide for Loving Pet Parents"
+                subject = "Honoring Your Pet's Final Moments: A Compassionate Guide for Loving Pet Parents"
 
                 send_email(
                     subject, html_content, images, email, sender_email, sender_password
