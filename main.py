@@ -21,7 +21,8 @@ def fetch_and_clean_html_content(url):
             return cleaned_html
         else:
             print(
-                f"Error fetching content from URL. Status code: {response.status_code}"
+                f"Error fetching content from URL. Status code: {
+                    response.status_code}"
             )
             return None
     except Exception as e:
@@ -69,8 +70,9 @@ def send_email(subject, html_content, images, to_email):
 
 
 def main():
-    url = "https://us4.campaign-archive.com/?e=__test_email__&u=ab8c81ebfd5310096b6de2a2a&id=bc0bb065a1"  # add body url here
-    excel_file = "emails.xlsx"  # add path to emails excel
+    # add body url here
+    url = "https://us4.campaign-archive.com/?e=__test_email__&u=ab8c81ebfd5310096b6de2a2a&id=bc0bb065a1"
+    excel_file = "NYP test emails - 17 JULY 2024.xlsx"  # add path to emails excel
 
     try:
 

@@ -21,7 +21,8 @@ def fetch_and_clean_html_content(url):
             return cleaned_html
         else:
             print(
-                f"Error fetching content from URL. Status code: {response.status_code}"
+                f"Error fetching content from URL. Status code: {
+                    response.status_code}"
             )
             return None
     except Exception as e:
@@ -66,7 +67,7 @@ def send_email(subject, html_content, images, to_email, sender_email, sender_pas
 
 def main():
     url = "https://us4.campaign-archive.com/?e=__test_email__&u=ab8c81ebfd5310096b6de2a2a&id=bc0bb065a1"
-    excel_file = "email.xlsx"
+    excel_file = "NYP test emails - 17 JULY 2024.xlsx"
 
     sender_email = input("Enter sender's email: ")
     sender_password = input("Enter app password: ")
@@ -82,7 +83,7 @@ def main():
 
             if html_content:
                 images = []
-                subject = "Testing from bot - 16/07/2024"
+                subject = "Test from bot - Honoring Your Pet's Final Moments: A Compassionate Guide for Loving Pet Parents"
 
                 send_email(
                     subject, html_content, images, email, sender_email, sender_password
