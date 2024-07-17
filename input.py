@@ -67,7 +67,7 @@ def send_email(subject, html_content, images, to_email, sender_email, sender_pas
 
 def main():
     # url and path to excel file containing email ids needs to be changed everytime
-    url = "https://us4.campaign-archive.com/?e=__test_email__&u=ab8c81ebfd5310096b6de2a2a&id=bc0bb065a1"
+    url = "https://us22.campaign-archive.com/?e=__test_email__&u=3ea6479ffa9fd8f9d056f5bd1&id=80159c0d47"
     excel_file = "NYP test emails - 17 JULY 2024.xlsx"
 
     sender_email = input("Enter sender's email: ")
